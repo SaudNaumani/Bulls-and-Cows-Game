@@ -3,7 +3,10 @@
 //
 //  Created by Saud Naumani on 2018-02-27.
 //  Copyright © 2018 Saud Naumani. All rights reserved.
-//
+
+/* The game logic (no view or direct user interaction)
+The games is a simple guess the word game based on Mastermind
+ */
 
 #ifndef FBullCowGame_hpp
 #define FBullCowGame_hpp
@@ -44,9 +47,9 @@ public:
     void PrintGameSummary();
     EGuessStatus CheckGuessValidity(FString) const;
     
-    void Reset(); //TODO make a more rich return back
-    //counts bulls & cows, and increases try # assuming valid guess
-    FBullCowCount SubmitValidGuess(FString);
+    void Reset();
+    FBullCowCount SubmitValidGuess(FString); //counts bulls & cows, and increases try # assuming valid guess
+
 private:
     bool IsIsogram(FString) const;
     bool IsLowercase(FString) const;
@@ -57,9 +60,3 @@ private:
     FString MyHiddenWord;
     bool GameIsWon;
 };
-
-
-
-
-
-

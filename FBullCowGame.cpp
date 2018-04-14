@@ -4,32 +4,29 @@
 //
 //  Created by Saud Naumani on 2018-02-27.
 //  Copyright © 2018 Saud Naumani. All rights reserved.
-//
 
 #include "FBullCowGame.hpp"
 #include <map>
+//to make syntax Unreal friendly
 #define TMap std::map
-
 using int32 = int;
 
-int32 FBullCowGame::GetMaxTries() const { return MyMaxTries; }
+FBullCowGame::FBullCowGame() { Reset(); } //default constructor; called when the object is created
+
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
 bool FBullCowGame::IsGameWon() const { return GameIsWon; }
 
-
-FBullCowGame::FBullCowGame()
-{
-    Reset();
+int32 FBullCowGame::GetMaxTries() const {
+    TMap <int32, int32> WordLengthToMaxTries {{3,4}, {4,7}, {5,10}, {6,15}, {7,20}};
+    return WordLengthToMaxTries[MyHiddenWord.length()];
 }
 
 void FBullCowGame::Reset()
 {
-    constexpr int32 Max_Tries = 3;
-    const FString HIDDEN_WORD = "ant";
-
-    MyMaxTries = Max_Tries;
+    const FString HIDDEN_WORD = "plane"; //MUST be an isogram
     MyHiddenWord = HIDDEN_WORD;
+    
     MyCurrentTry = 1;
     GameIsWon = false;
     return;
@@ -41,7 +38,7 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
     {
         return EGuessStatus::Not_Isogram;
     }
-    else if (!IsLowercase(Guess)) //if the guess isnt all lowercase
+    else if (!IsLowercase(Guess))
     {
         return EGuessStatus::Not_Lowercase;
     }
@@ -127,39 +124,3 @@ bool FBullCowGame::IsLowercase(FString Word) const
     }
     return true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
