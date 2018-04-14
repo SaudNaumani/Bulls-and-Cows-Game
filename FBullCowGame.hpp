@@ -49,6 +49,7 @@ public:
     FBullCowCount SubmitValidGuess(FString);
 private:
     bool IsIsogram(FString) const;
+    bool IsLowercase(FString) const;
     
     //See constructor for initialization
     int32 MyCurrentTry;

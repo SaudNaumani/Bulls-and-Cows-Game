@@ -15,7 +15,6 @@
 using FText = std::string;
 using int32 = int;
 
-
 //Function Declarations
 void PrintIntro();
 FText GetValidGuess();
@@ -52,7 +51,7 @@ void PlayGame()
     
     //loop  asking for guesses while the game
     //is NOT won and there are still tries remaining
-    while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries){  //TODO: change from FOR to WHILE
+    while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries){
         FText Guess = GetValidGuess();
         
         //Submit valid guess to the game, and recieve counts
@@ -85,10 +84,11 @@ FText GetValidGuess()
                 std::cout << "Please enter a " << BCGame.GetHiddenWordLength() << " letter word.\n";
                 break;
             case EGuessStatus::Not_Lowercase:
-                std::cout << "Please enter your word in lowecase.\n";
+                std::cout << "Please enter your word in lowercase.\n";
                 break;
             case EGuessStatus::Not_Isogram:
                 std::cout << "Please enter a word without repeating letters.\n";
+                break;
             default:
                 return Guess; //assumes guess is valid
         }
